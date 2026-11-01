@@ -1,113 +1,59 @@
-# 🚀 Noyra Labs
+# Nøyra Labs
 
-> Building scalable Discord operations infrastructure with modern cloud architecture
+> Tools for teams, organizations and communities on Discord.
 
-## About
+Nøyra Labs builds the **Nøyra Suite**: four products that run alongside your Discord server, share one sign-in, and use your server's own members and roles. Each product keeps its own data, and everything runs on Cloudflare.
 
-Noyra Labs develops microservice-based solutions for Discord community management, focusing on ticket systems, role management, and service monitoring. Our infrastructure leverages containerized Discord bots with serverless AWS backends to deliver reliable, scalable operations tools.
-
----
-
-## 🏗️ Architecture Overview
-
-Our ecosystem consists of two primary microservices working in tandem:
-
-```
-┌─────────────────────┐         ┌──────────────────────┐
-│   NoyraDocket Bot   │────────▶│   Tickets AWS API    │
-│   (Discord Bot)     │         │   (Lambda Backend)   │
-│                     │         │                      │
-│  • TypeScript       │         │  • Node.js Lambdas   │
-│  • SapphireJS       │         │  • S3 Storage        │
-│  • Discord.js       │         │  • API Gateway       │
-│  • Prisma ORM       │         │                      │
-│  • MariaDB          │         │                      │
-│  • Docker           │         │                      │
-└─────────────────────┘         └──────────────────────┘
-```
+**Website:** [noyralabs.com](https://noyralabs.com) · **Guides:** [docs.noyralabs.com](https://docs.noyralabs.com) · **Account:** [account.noyralabs.com](https://account.noyralabs.com)
 
 ---
 
-## 📦 Microservices
+## The Nøyra Suite
 
-### NoyraDocket — Discord Operations Bot
+| Product | What it does | Site |
+| --- | --- | --- |
+| **Docket** | Ticket management: typed private-thread tickets, staff notifications, automatic transcripts and customer feedback, configured from one dashboard. | [docket.noyralabs.com](https://docket.noyralabs.com) |
+| **Crew** | People management: roles imported from Discord, service records, org charts, shifts and activity, jobs and applications, requests and leave. | [crew.noyralabs.com](https://crew.noyralabs.com) |
+| **Sensa** | Employee feedback: anonymous surveys and messages, with results only shown for groups of five or more. | [sensa.noyralabs.com](https://sensa.noyralabs.com) |
+| **Aptio** | Training, exams and forms: courses marked on the server, with roles given automatically when someone passes. | [aptio.noyralabs.com](https://aptio.noyralabs.com) |
 
-A comprehensive Discord bot built on the Sapphire Framework for managing private-thread ticket workflows, role enrollment, and service alerts.
+### One account
 
-**Key Features:**
-- 🎫 **Ticket Lifecycle Management** — Private-thread tickets with type selection, role-based access, status tracking, and automated closure workflows
-- ⚙️ **Per-Guild Configuration** — Customizable ticket types, numbering formats, and notification channels
-- 👥 **Role Self-Enrollment** — Interactive announcement panels with toggle buttons for role management
-- 📊 **Service Monitoring** — Integration capabilities for external service status tracking
-- 📝 **Transcript Generation** — Automatic transcript creation and cloud storage integration
+Sign in once with Discord at [account.noyralabs.com](https://account.noyralabs.com) to use every product. From there you can sign out everywhere, or delete your account and its data from every product at once.
 
-**Tech Stack:**
-- TypeScript with SapphireJS framework
-- Discord.js for Discord API integration
-- Prisma ORM with MariaDB
-- Docker containerization
-- Modular command and interaction handling architecture
+### Client work
+
+Alongside the Suite, we build custom tools for clients. See [noyralabs.com](https://noyralabs.com) for consulting.
 
 ---
 
-### Tickets-AWS — Serverless Transcript Backend
+## How we build
 
-A serverless AWS Lambda backend providing secure transcript storage and retrieval for Discord support tickets.
+- **Discord is the source of truth.** People are their Discord account and organizations are their Discord server. Permissions follow current Discord roles and are checked on the server for every action.
+- **Separate by design.** Each product and each organization keeps its own data, and one organization can never reach another's.
+- **Privacy first.** Sign-in tokens are never stored, sessions are stored only as hashes, and Sensa's anonymity rules are enforced on the server.
+- **Cloudflare-native.** Workers, Durable Objects, D1 and R2, with strict security headers and no servers to patch.
 
-**Capabilities:**
-- 📤 **Secure Upload** — Authenticated API for transcript ingestion
-- 💾 **Cloud Storage** — Scalable S3-based storage with lifecycle management
-- 🌐 **Web Access** — Rendered HTML transcript pages and raw JSON retrieval
-- 🔒 **Security** — API authentication and input validation
-
-**Tech Stack:**
-- Node.js Lambda functions
-- AWS Lambda, S3, and API Gateway
-- Serverless architecture with automatic scaling
-- RESTful API design
-
----
-
-## 🔄 System Integration
-
-The two microservices work together to provide a complete ticket management solution:
-
-1. **Ticket Creation** — Users create support tickets through Discord interactions
-2. **Lifecycle Management** — Comprehensive status tracking and user management
-3. **Transcript Generation** — Automatic capture of ticket conversations
-4. **Cloud Storage** — Secure, persistent transcript archival
-5. **Web Access** — Shareable transcript links for reference and auditing
-
----
-
-## 🛠️ Development Philosophy
-
-- **Microservice Architecture** — Loosely coupled services with clear boundaries
-- **Cloud-Native Design** — Leveraging managed services for scalability and reliability
-- **Infrastructure as Code** — Reproducible deployments via Docker and serverless configurations
-- **Security First** — API authentication, input validation, and secure credential management
-- **Developer Experience** — Comprehensive documentation, type safety, and modern tooling
-
----
-
-## 📊 Tech Stack Summary
+## Tech stack
 
 | Category | Technologies |
-|----------|--------------|
-| **Languages** | TypeScript, Node.js |
-| **Frameworks** | SapphireJS, Discord.js |
-| **Databases** | MariaDB, Prisma ORM |
-| **Cloud Services** | AWS Lambda, S3, API Gateway |
-| **Infrastructure** | Docker, Serverless |
-| **Development Tools** | Just, ESLint, Prettier |
+| --- | --- |
+| **Languages** | TypeScript |
+| **Web** | Astro, Svelte 5, React islands, Tailwind CSS, DaisyUI |
+| **Backend** | Cloudflare Workers, Hono, Zod |
+| **Data** | Durable Objects (SQLite), D1, R2 |
+| **Discord bot** | Sapphire Framework, Discord.js, Docker |
+| **Testing** | Vitest (in workerd), Playwright, axe-core |
+| **Tooling** | pnpm, ESLint, Prettier, GitHub Actions |
 
 ---
+
+## Security
+
+Please don't open public issues for security problems. Report them privately to Nøyra Labs.
 
 <div align="center">
 
-**Built with ❤️ by Noyra Labs**
-
-*Scalable Discord operations infrastructure for modern communities*
+**Built by Nøyra Labs**
 
 </div>
-
